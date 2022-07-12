@@ -31,17 +31,20 @@ class MainActivity : AppCompatActivity() {
     private fun fetch(caller: String) {
         cacheable.fetch(object : Cacheable.MainDataCallback<String>() {
             override fun onNext(e: String?) {
-                println("$caller onNext $e")
+                log("$caller onNext $e")
             }
 
             override fun onError(t: Throwable?) {
-                println("$caller onError ${t?.message}")
+                log("$caller onError ${t?.message}")
             }
         })
     }
 
     private fun get(){
-        println("get ${cacheable.get()}")
+        log("get ${cacheable.get()}")
     }
 
+    private fun log(s: String) {
+        binding.txtMsg.append("${s}\n")
+    }
 }
